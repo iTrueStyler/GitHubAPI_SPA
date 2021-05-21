@@ -1,8 +1,14 @@
 const SET_REPOS = 'SET_REPOS'
+const SET_IS_FETCHING = 'SET_IS_FETCHING'
+
+
 
 const defaultState = {
   items: [],
   isFetching: true,
+  currentPage:1,
+  perPage:10,
+  totalCount:0
 };
 
 export default function reposReducer(state=defaultState, action) {
@@ -10,8 +16,15 @@ export default function reposReducer(state=defaultState, action) {
     case SET_REPOS:
       return{
         ...state,
-        items:action.payload.items
+        items:action.payload.items,
+        totalCount:action.payload.totalCount,
+        isFetching:false
 
+      }
+    case SET_IS_FETCHING:
+      return{
+        ...state,
+        isFetching:action.payload
       }
     default:
 
@@ -21,3 +34,5 @@ export default function reposReducer(state=defaultState, action) {
 
 
 export const setRepos = (repos)=>({type:SET_REPOS,payload:repos})
+
+export const setIsFetching = (bool)=>({type:SET_IS_FETCHING,payload:bool})
