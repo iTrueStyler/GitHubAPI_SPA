@@ -1,15 +1,20 @@
 import React from 'react';
 import './app.less';
 import {useDispatch,useSelector} from 'react-redux';
-import {BrowserRouter,Route} from 'react-router-dom';
+import {BrowserRouter,Redirect,Route, Switch} from 'react-router-dom';
 import Main from './main/Main';
+import Card from './card/Card';
 
 
 function App() {
    return (
       <BrowserRouter>
          <div className="container">
-         <Route path='/' component={Main}/>
+         <Switch>
+         <Route exact path='/' component={Main}/>
+         <Route path='/card' component={Card}/>
+         <Redirect to='/'/>
+         </Switch>
          </div>
 
          
